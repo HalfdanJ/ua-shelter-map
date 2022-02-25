@@ -5,7 +5,9 @@
 
   import { onMount } from "svelte";
   import kml_index from "./kml_index";
-  export let location;
+  export let location = "Ukraine";
+  let kml_layers = [];
+  let infowindow;
 
   onMount(async () => {
     map = new google.maps.Map(container, {
@@ -14,11 +16,24 @@
       mapId: "4b9388789c2d3ecb",
     });
     kml_index.forEach((kml_url) => {
-      let kmlLayer = new google.maps.KmlLayer({
+      let kml_layer = new google.maps.KmlLayer({
         suppressInfoWindows: true,
         preserveViewport: true,
         map: map,
         url: kml_url,
+      });
+      kml_layers.push(kml_layer);
+    });
+
+    kml_layers.forEach((kml_layer) => {
+      google.maps.event.addListener(kml_layer, "click", function (kmlEvent) {
+        if (infowindow) infowindow.close();
+        infowindow = new google.maps.InfoWindow({
+          content: kmlEvent.featureData.infoWindowHtml,
+          position: kmlEvent.latLng,
+          map: map,
+          pixelOffset: { width: 0, height: -25 },
+        });
       });
     });
   });
