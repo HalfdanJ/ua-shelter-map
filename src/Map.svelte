@@ -11,6 +11,13 @@
       zoom,
       center,
     });
+    console.log("adding kml");
+    var kmlLayer = new google.maps.KmlLayer({
+      suppressInfoWindows: true,
+      preserveViewport: false,
+      map: map,
+      url: "/kml/map_0",
+    });
   });
 </script>
 
