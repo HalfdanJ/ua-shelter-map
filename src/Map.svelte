@@ -5,7 +5,7 @@
 
   import { onMount } from "svelte";
   import kml_index from "./kml_index";
-  export let location = "Ukraine";
+  export let location;
   let kml_layers = [];
   let infowindow;
 
