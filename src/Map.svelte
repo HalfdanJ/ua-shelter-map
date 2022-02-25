@@ -7,10 +7,11 @@
   export let location;
 
   onMount(async () => {
-    console.log(location)
     map = new google.maps.Map(container, {
       zoom,
       center: location,
+      mapId:'4b9388789c2d3ecb',
+      
     });
     console.log("adding kml");
     var kmlLayer = new google.maps.KmlLayer({
