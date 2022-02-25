@@ -1,27 +1,29 @@
 <script>
   let container;
   let map;
-  let zoom = 8;
-  let center = { lat: 48.397, lng: 36.644 };
+  let zoom = 12;
 
   import { onMount } from "svelte";
+  export let location;
 
   onMount(async () => {
+    console.log(location)
     map = new google.maps.Map(container, {
       zoom,
-      center,
+      center: location,
     });
     console.log("adding kml");
     var kmlLayer = new google.maps.KmlLayer({
       suppressInfoWindows: true,
-      preserveViewport: false,
+      preserveViewport: true,
       map: map,
-      url: "/kml/map_0",
+      url: "https://www.google.com/maps/d/u/0/kml?mid=1j_f6ytqZ9kO67Y0cOjgDfqIPmag",
     });
   });
 </script>
 
 <div class="full-screen" bind:this={container} />
+
 
 <style>
   .full-screen {
