@@ -7,6 +7,9 @@
     fields: ["formatted_address", "geometry", "name"],
     strictBounds: false,
     types: [],
+    componentRestrictions: {
+      country: 'ua'
+    } 
   };
 
   let input;
