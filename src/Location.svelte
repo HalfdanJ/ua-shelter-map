@@ -7,6 +7,9 @@
     fields: ["formatted_address", "geometry", "name"],
     strictBounds: false,
     types: [],
+    componentRestrictions: {
+      country: 'ua'
+    } 
   };
 
   let input;
@@ -44,15 +47,13 @@
 </script>
 
 <div class="container">
+  <div style="font-size:3em">🇺🇦</div>
   <h1>Find shelter</h1>
 
   <h3>
-    Lookup shelter locations in Ukraine, all locations are pulled from various
-    datasources from <a
-      href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
-      >censor.net</a
-    >
+    Lookup shelter locations in Ukraine
   </h3>
+  
   <input type="text" bind:this={input} />
 
   <div id="infowindow-content" bind:this={infowindowContent}>
@@ -66,7 +67,15 @@
   {/if}
 
   <div style="margin-top: auto">
+    <p> Locations are pulled from various
+      datasources from <a
+        href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
+        >censor.net</a
+      >
+  </p>
+    <p>
     No data gets stored from this website. Full source code is available on <a href="https://github.com/HalfdanJ/ua-shelter-map">github</a>
+    </p>
   </div>
 </div>
 
