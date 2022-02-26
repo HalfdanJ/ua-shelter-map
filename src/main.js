@@ -1,3 +1,4 @@
+import './i18n';
 import App from './App.svelte';
 window.initMap = function ready() {
   app.$set({ ready: true });

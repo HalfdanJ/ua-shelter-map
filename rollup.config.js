@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import html from '@rollup/plugin-html';
+import json from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss';
 import del from 'rollup-plugin-delete';
 
@@ -55,7 +56,7 @@ export default {
     // we'll extract any component CSS out into
     // a separate file - better for performance
     postcss({ extract: true }),
-
+    json(),
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
     // some cases you'll need additional configuration -

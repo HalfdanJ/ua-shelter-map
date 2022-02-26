@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { _ } from 'svelte-i18n';
 
   const dispatch = createEventDispatcher();
 
@@ -32,7 +33,7 @@
 
   function automaticLocation() {
     if (navigator.geolocation) {
-      button.innerText = 'Getting location...';
+      button.innerText = $_('getting-location');
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const pos = {
@@ -43,7 +44,7 @@
           dispatch('location', pos);
         },
         () => {
-          button.innerText = 'Sorry, could not get location';
+          button.innerText = $_('sorry-could-not-get-location');
         }
       );
     }
@@ -52,9 +53,9 @@
 
 <div class="container">
   <div style="font-size:3em">🇺🇦</div>
-  <h1>Find shelter</h1>
+  <h1>{$_('find-shelter')}</h1>
 
-  <h3>Lookup shelter locations in Ukraine</h3>
+  <h3>{$_('lookup-shelter')}</h3>
 
   <input type="text" bind:this={input} />
 
@@ -64,30 +65,35 @@
   </div>
 
   {#if navigator.geolocation}
-    <h3>Or allow automatic location</h3>
+    <h3>{$_('or-allow-automatic-location')}</h3>
     <button on:click={automaticLocation} bind:this={button}
-      >Allow Location</button
+      >{$_('allow-location')}</button
     >
   {/if}
 
   <div style="margin-top: 30px">
     <p>
-      Please note this is very work in progress. Reach out to <a
-        href="https://twitter.com/halfdanj">@halfdanj</a
-      >
-      or <a href="https://twitter.com/GautamBose18">@GautamBose18</a> with questions
-      or concerns
+      {@html $_('work-in-progress', {
+        values: {
+          url1: '<a href="https://twitter.com/halfdanj">@halfdanj</a>',
+          url2: '<a href="https://twitter.com/GautamBose18">@GautamBose18</a>',
+        },
+      })}
     </p>
     <p>
-      Locations are pulled from various datasources, aggregated by <a
-        href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
-        >Цензор.НЕТ</a
-      >.
+      {@html $_('source', {
+        values: {
+          url: '<a href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty">Цензор.НЕТ</a>',
+        },
+      })}
     </p>
     <p>
-      No data gets stored from this website. Full source code is available on <a
-        href="https://github.com/HalfdanJ/ua-shelter-map">github</a
-      >
+      {@html $_('no-data-gets-stored', {
+        values: {
+          github:
+            '<a href="https://github.com/HalfdanJ/ua-shelter-map">github</a>',
+        },
+      })}
     </p>
   </div>
 </div>

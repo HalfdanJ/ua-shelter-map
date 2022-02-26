@@ -6,4 +6,17 @@
         "editor.defaultFormatter": "svelte.svelte-vscode"
     },
     "editor.tabSize": 2,
+    "i18n-ally.localesPaths": [
+        "src/localization"
+    ],
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.extract.ignoredByFiles": {
+        "src/Location.svelte": [
+            "\n      {@html $_('work-in-progress', {\n        values: {\n          url1: '",
+            "',\n          url2: '",
+            "\n      {@html $_('source', {\n        values: {\n          url: '",
+            "\n      {@html $_('no-data-gets-stored', {\n        values: {\n          github:\n            '",
+            "Цензор.НЕТ"
+        ]
+    },
 }

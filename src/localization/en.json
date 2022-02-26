@@ -1,0 +1,11 @@
+{
+  "lookup-shelter": "Lookup shelter locations in Ukraine",
+  "find-shelter": "Find shelter",
+  "or-allow-automatic-location": "Or allow automatic location",
+  "allow-location": "Allow Location",
+  "work-in-progress": "Please note this is very work in progress. Reach out to {url1} or {url2} with questions or concerns",
+  "source": "Locations are pulled from various datasources, aggregated by {url}.",
+  "no-data-gets-stored": "No data gets stored from this website. Full source code is available on {github}",
+  "getting-location": "Getting location...",
+  "sorry-could-not-get-location": "Sorry, could not get location"
+}
