@@ -13,6 +13,7 @@
   };
 
   let input;
+  let button;
   let infowindowContent;
   $: autocomplete =
     input && new google.maps.places.Autocomplete(input, options);
@@ -30,6 +31,7 @@
 
   function automaticLocation() {
     if (navigator.geolocation) {
+      button.innerText = "Getting location..."
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const pos = {
@@ -39,6 +41,8 @@
 
           dispatch("location", pos);
          
+        }, ()=> {
+          button.innerText = 'Sorry, could not get location'
         }
       );
     }
@@ -62,7 +66,7 @@
 
   {#if navigator.geolocation}
   <h3>Or allow automatic location</h3>
-  <button on:click={automaticLocation}>Allow Location</button>
+  <button on:click={automaticLocation} bind:this={button} >Allow Location</button>
   {/if}
 
   <div style="margin-top: 30px">

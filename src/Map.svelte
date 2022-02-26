@@ -12,13 +12,27 @@
   let infowindow;
 
   onMount(async () => {
+    const restriction = new google.maps.LatLngBounds(
+      new google.maps.LatLng(43.3614785833, 20.0856083513),
+      new google.maps.LatLng(53.3350745713, 42.0807890155)
+    );
+
+    if (location && !restriction.contains(location)) {
+      zoom = 0;
+      location = { lat: 49.476226, lng: 32.579613 };
+    }
+
     map = new google.maps.Map(container, {
       zoom,
       center: location,
-      gestureHandling: 'greedy',
+      gestureHandling: "greedy",
       mapId: "24b37ddb2193c0b1",
+      restriction: {
+        latLngBounds: restriction,
+        strictBounds: true,
+      },
     });
-    if(viewport){
+    if (viewport) {
       map.fitBounds(viewport);
     }
     kml_index.forEach((kml_url) => {
