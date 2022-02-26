@@ -1,11 +1,13 @@
 <script>
   let container;
   let map;
-  let zoom = 12;
+  let zoom = 16;
 
   import { onMount } from "svelte";
   import kml_index from "./kml_index";
   export let location;
+  export let viewport;
+
   let kml_layers = [];
   let infowindow;
 
@@ -13,8 +15,12 @@
     map = new google.maps.Map(container, {
       zoom,
       center: location,
+      
       mapId: "24b37ddb2193c0b1",
     });
+    if(viewport){
+      map.fitBounds(viewport);
+    }
     kml_index.forEach((kml_url) => {
       let kml_layer = new google.maps.KmlLayer({
         suppressInfoWindows: true,

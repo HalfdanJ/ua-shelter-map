@@ -24,8 +24,7 @@
     autocomplete?.addListener("place_changed", () => {
       infowindow.close();
       const place = autocomplete.getPlace();
-
-      dispatch("location", place.geometry.location);
+      dispatch("viewport", place.geometry.viewport);
     });
   }
 

@@ -1,6 +1,7 @@
 <script>
   export let ready;
   export let location;
+  export let viewport;
   import Map from "./Map.svelte";
   import Location from "./Location.svelte";
 
@@ -17,10 +18,10 @@
   </script>
 </svelte:head>
 <main>
-  {#if ready && location}
-    <Map {location} />
-  {:else if ready && !location}
-    <Location on:location={(ev) => (location = ev.detail)} />
+  {#if ready && (location || viewport)}
+    <Map {location} {viewport} />
+  {:else if ready && !(location && viewport)}
+    <Location on:location={(ev) => (location = ev.detail)} on:viewport={(ev) => (viewport = ev.detail)} />
   {/if}
 </main>
 
