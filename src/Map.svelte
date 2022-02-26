@@ -10,15 +10,21 @@
 
   let kml_layers = [];
   let infowindow;
+  let locationMarker;
+  export const setLocation = (loc) => {
+    if (locationMarker) {
+      locationMarker.setLocation(loc);
+    }
+  };
 
   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
       center: location,
-      gestureHandling: 'greedy',
+      gestureHandling: "greedy",
       mapId: "24b37ddb2193c0b1",
     });
-    if(viewport){
+    if (viewport) {
       map.fitBounds(viewport);
     }
     kml_index.forEach((kml_url) => {
@@ -30,7 +36,6 @@
       });
       kml_layers.push(kml_layer);
     });
-
     kml_layers.forEach((kml_layer) => {
       google.maps.event.addListener(kml_layer, "click", function (kmlEvent) {
         if (infowindow) infowindow.close();
@@ -41,6 +46,18 @@
           pixelOffset: { width: 0, height: -25 },
         });
       });
+    });
+    new google.maps.Marker({
+      position: location,
+      map: map,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 6,
+        fillOpacity: 1,
+        strokeWeight: 2,
+        fillColor: "#5384ED",
+        strokeColor: "#ffffff",
+      },
     });
   });
 </script>

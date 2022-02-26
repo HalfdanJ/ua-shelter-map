@@ -4,13 +4,21 @@
   export let viewport;
   import Map from "./Map.svelte";
   import Location from "./Location.svelte";
-
-  import "./global.css"
+  let map;
+  import "./global.css";
+  const onLocationUpdate = (ev) => {
+    location = ev.detail;
+    if (map) {
+      map.setLocation(ev.detail);
+    }
+  };
 </script>
 
 <svelte:head>
-  <meta name="viewport" 
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+  />
 
   <script
     async
@@ -19,9 +27,12 @@
 </svelte:head>
 <main>
   {#if ready && (location || viewport)}
-    <Map {location} {viewport} />
+    <Map bind:this={map} {location} {viewport} />
   {:else if ready && !(location && viewport)}
-    <Location on:location={(ev) => (location = ev.detail)} on:viewport={(ev) => (viewport = ev.detail)} />
+    <Location
+      on:location={onLocationUpdate}
+      on:viewport={(ev) => (viewport = ev.detail)}
+    />
   {/if}
 </main>
 
