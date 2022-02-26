@@ -3,8 +3,8 @@
   let map;
   let zoom = 16;
 
-  import { onMount } from "svelte";
-  import kml_index from "./kml_index";
+  import { onMount } from 'svelte';
+  import kml_index from './kml_index';
   export let location;
   export let viewport;
 
@@ -31,8 +31,8 @@
     map = new google.maps.Map(container, {
       zoom,
       center: location,
-      gestureHandling: "greedy",
-      mapId: "24b37ddb2193c0b1",
+      gestureHandling: 'greedy',
+      mapId: '24b37ddb2193c0b1',
       restriction: {
         latLngBounds: restriction,
         strictBounds: true,
@@ -51,7 +51,7 @@
       kml_layers.push(kml_layer);
     });
     kml_layers.forEach((kml_layer) => {
-      google.maps.event.addListener(kml_layer, "click", function (kmlEvent) {
+      google.maps.event.addListener(kml_layer, 'click', function (kmlEvent) {
         if (infowindow) infowindow.close();
         infowindow = new google.maps.InfoWindow({
           content: kmlEvent.featureData.infoWindowHtml,
@@ -69,8 +69,8 @@
         scale: 6,
         fillOpacity: 1,
         strokeWeight: 2,
-        fillColor: "#5384ED",
-        strokeColor: "#ffffff",
+        fillColor: '#5384ED',
+        strokeColor: '#ffffff',
       },
     });
   });

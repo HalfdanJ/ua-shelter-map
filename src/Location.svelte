@@ -1,14 +1,14 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
   const options = {
-    fields: ["formatted_address", "geometry", "name"],
+    fields: ['formatted_address', 'geometry', 'name'],
     strictBounds: false,
     types: [],
     componentRestrictions: {
-      country: "ua",
+      country: 'ua',
     },
   };
 
@@ -22,17 +22,17 @@
   infowindow.setContent(infowindowContent);
 
   $: {
-    autocomplete?.addListener("place_changed", () => {
+    autocomplete?.addListener('place_changed', () => {
       infowindow.close();
       const place = autocomplete.getPlace();
-      dispatch("viewport", place.geometry.viewport);
-      dispatch("location", place.geometry.location);
+      dispatch('viewport', place.geometry.viewport);
+      dispatch('location', place.geometry.location);
     });
   }
 
   function automaticLocation() {
     if (navigator.geolocation) {
-      button.innerText = "Getting location...";
+      button.innerText = 'Getting location...';
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const pos = {
@@ -40,10 +40,10 @@
             lng: position.coords.longitude,
           };
 
-          dispatch("location", pos);
+          dispatch('location', pos);
         },
         () => {
-          button.innerText = "Sorry, could not get location";
+          button.innerText = 'Sorry, could not get location';
         }
       );
     }

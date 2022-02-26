@@ -2,10 +2,10 @@
   export let ready;
   export let location;
   export let viewport;
-  import Map from "./Map.svelte";
-  import Location from "./Location.svelte";
+  import Map from './Map.svelte';
+  import Location from './Location.svelte';
   let map;
-  import "./global.css";
+  import './global.css';
   const onLocationUpdate = (ev) => {
     location = ev.detail;
     if (map) {
