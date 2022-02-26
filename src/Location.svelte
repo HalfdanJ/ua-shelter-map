@@ -72,10 +72,17 @@
 
   <div style="margin-top: 30px">
     <p>
-      Locations are pulled from various datasources from <a
-        href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
-        >censor.net</a
+      Please note this is very work in progress. Reach out to <a
+        href="https://twitter.com/halfdanj">@halfdanj</a
       >
+      or <a href="https://twitter.com/GautamBose18">@GautamBose18</a> with questions
+      or concerns
+    </p>
+    <p>
+      Locations are pulled from various datasources, aggregated by <a
+        href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
+        >Цензор.НЕТ</a
+      >.
     </p>
     <p>
       No data gets stored from this website. Full source code is available on <a
