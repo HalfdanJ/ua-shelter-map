@@ -7,5 +7,7 @@
   "source": "Locations are pulled from various datasources, aggregated by {url}.",
   "no-data-gets-stored": "No data gets stored from this website. Full source code is available on {github}",
   "getting-location": "Getting location...",
-  "sorry-could-not-get-location": "Sorry, could not get location"
+  "sorry-could-not-get-location": "Sorry, could not get location",
+  "find-more": "Find more places at",
+  "close": "Close"
 }

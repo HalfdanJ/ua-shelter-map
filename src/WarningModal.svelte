@@ -1,17 +1,18 @@
 <script>
   export let onClose = () => {};
+  import { _ } from 'svelte-i18n';
 </script>
 
 <div class="container">
   <p>
-    Знайдіть більше місць за адресою
+    {$_('find-more')}
     <a
       target="_blank"
       href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
       >censor.net</a
     >
   </p>
-  <button on:click={onClose}>Close</button>
+  <button on:click={onClose}>{$_('close')}</button>
 </div>
 
 <style>
