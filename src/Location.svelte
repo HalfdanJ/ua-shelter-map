@@ -91,6 +91,8 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    max-width: 400px;
+    margin: 0 auto;
   }
   input {
     width: 100%;
