@@ -3,7 +3,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import css from 'rollup-plugin-css-only';
+import html from '@rollup/plugin-html';
+import postcss from 'rollup-plugin-postcss';
+import del from 'rollup-plugin-delete'
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -31,12 +33,15 @@ function serve() {
 export default {
 	input: 'src/main.js',
 	output: {
-		sourcemap: true,
+		sourcemap: false,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		dir: 'build',
+		entryFileNames: '[name].[hash].js',		
 	},
 	plugins: [
+		del({ targets: 'build/*' }),
+
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
@@ -45,7 +50,7 @@ export default {
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
-		css({ output: 'bundle.css' }),
+		postcss({ extract:true }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -57,6 +62,7 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+		html({title:"Shelter Map 🇺🇦"}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
@@ -64,7 +70,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload('build'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify

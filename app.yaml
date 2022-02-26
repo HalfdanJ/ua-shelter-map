@@ -1,0 +1,11 @@
+runtime: python37
+
+default_expiration: "30d"
+
+handlers:
+- url: /
+  static_files: build/index.html
+  upload: build/index.html
+  expiration: "0d 0m"
+- url: /
+  static_dir: build
