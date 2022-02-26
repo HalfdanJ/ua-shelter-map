@@ -8,8 +8,8 @@
     strictBounds: false,
     types: [],
     componentRestrictions: {
-      country: 'ua'
-    } 
+      country: "ua",
+    },
   };
 
   let input;
@@ -26,12 +26,13 @@
       infowindow.close();
       const place = autocomplete.getPlace();
       dispatch("viewport", place.geometry.viewport);
+      dispatch("location", place.geometry.location);
     });
   }
 
   function automaticLocation() {
     if (navigator.geolocation) {
-      button.innerText = "Getting location..."
+      button.innerText = "Getting location...";
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const pos = {
@@ -40,9 +41,9 @@
           };
 
           dispatch("location", pos);
-         
-        }, ()=> {
-          button.innerText = 'Sorry, could not get location'
+        },
+        () => {
+          button.innerText = "Sorry, could not get location";
         }
       );
     }
@@ -53,10 +54,8 @@
   <div style="font-size:3em">🇺🇦</div>
   <h1>Find shelter</h1>
 
-  <h3>
-    Lookup shelter locations in Ukraine
-  </h3>
-  
+  <h3>Lookup shelter locations in Ukraine</h3>
+
   <input type="text" bind:this={input} />
 
   <div id="infowindow-content" bind:this={infowindowContent}>
@@ -65,19 +64,23 @@
   </div>
 
   {#if navigator.geolocation}
-  <h3>Or allow automatic location</h3>
-  <button on:click={automaticLocation} bind:this={button} >Allow Location</button>
+    <h3>Or allow automatic location</h3>
+    <button on:click={automaticLocation} bind:this={button}
+      >Allow Location</button
+    >
   {/if}
 
   <div style="margin-top: 30px">
-    <p> Locations are pulled from various
-      datasources from <a
+    <p>
+      Locations are pulled from various datasources from <a
         href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
         >censor.net</a
       >
-  </p>
+    </p>
     <p>
-    No data gets stored from this website. Full source code is available on <a href="https://github.com/HalfdanJ/ua-shelter-map">github</a>
+      No data gets stored from this website. Full source code is available on <a
+        href="https://github.com/HalfdanJ/ua-shelter-map">github</a
+      >
     </p>
   </div>
 </div>

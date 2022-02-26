@@ -10,6 +10,12 @@
 
   let kml_layers = [];
   let infowindow;
+  let locationMarker;
+  export const setLocation = (loc) => {
+    if (locationMarker) {
+      locationMarker.setLocation(loc);
+    }
+  };
 
   onMount(async () => {
     const restriction = new google.maps.LatLngBounds(
@@ -44,7 +50,6 @@
       });
       kml_layers.push(kml_layer);
     });
-
     kml_layers.forEach((kml_layer) => {
       google.maps.event.addListener(kml_layer, "click", function (kmlEvent) {
         if (infowindow) infowindow.close();
@@ -55,6 +60,18 @@
           pixelOffset: { width: 0, height: -25 },
         });
       });
+    });
+    locationMarker = new google.maps.Marker({
+      position: location,
+      map: map,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 6,
+        fillOpacity: 1,
+        strokeWeight: 2,
+        fillColor: "#5384ED",
+        strokeColor: "#ffffff",
+      },
     });
   });
 </script>
