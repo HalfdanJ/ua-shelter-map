@@ -15,7 +15,7 @@
     map = new google.maps.Map(container, {
       zoom,
       center: location,
-      
+      gestureHandling: 'greedy',
       mapId: "24b37ddb2193c0b1",
     });
     if(viewport){

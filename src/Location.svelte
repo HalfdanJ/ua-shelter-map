@@ -65,7 +65,7 @@
   <button on:click={automaticLocation}>Allow Location</button>
   {/if}
 
-  <div style="margin-top: auto">
+  <div style="margin-top: 30px">
     <p> Locations are pulled from various
       datasources from <a
         href="https://censor.net/ua/news/3318672/dsns_nagadala_spysok_ukryttiv_po_vsiyi_ukrayini_onovleni_karty"
@@ -83,7 +83,6 @@
     padding: 12px 42px;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     box-sizing: border-box;
   }
   input {
