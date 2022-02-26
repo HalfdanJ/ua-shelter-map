@@ -47,7 +47,7 @@
         });
       });
     });
-    new google.maps.Marker({
+    locationMarker = new google.maps.Marker({
       position: location,
       map: map,
       icon: {
