@@ -4,17 +4,26 @@
   let zoom = 16;
 
   import { onMount } from 'svelte';
+  import WarningModal from './WarningModal.svelte';
   import kml_index from './kml_index';
+  import { kml_boundary } from './kml_index';
   export let location;
   export let viewport;
 
   let kml_layers = [];
   let infowindow;
   let locationMarker;
+  let showWarningModal;
+
   export const setLocation = (loc) => {
     if (locationMarker) {
-      locationMarker.setLocation(loc);
+      locationMarker.setPosition(loc);
     }
+  };
+
+  const isInsideNoDataZone = (loc) => {
+    const noDataZone = new google.maps.Polygon({ paths: kml_boundary });
+    return google.maps.geometry.poly.containsLocation(loc, noDataZone);
   };
 
   onMount(async () => {
@@ -73,10 +82,20 @@
         strokeColor: '#ffffff',
       },
     });
+
+    if (isInsideNoDataZone(location)) {
+      console.log('true no data');
+      showWarningModal = true;
+    } else {
+      console.log('got data');
+    }
   });
 </script>
 
 <div class="full-screen" bind:this={container} />
+{#if showWarningModal}
+  <WarningModal onClose={() => (showWarningModal = false)} />
+{/if}
 
 <style>
   .full-screen {
