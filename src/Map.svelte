@@ -13,7 +13,7 @@
     map = new google.maps.Map(container, {
       zoom,
       center: location,
-      mapId: "4b9388789c2d3ecb",
+      mapId: "24b37ddb2193c0b1",
     });
     kml_index.forEach((kml_url) => {
       let kml_layer = new google.maps.KmlLayer({
